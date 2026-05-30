@@ -68,8 +68,28 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Google Calendar event creation failed:", error);
 
+    const detailedMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to create calendar event.";
+
+    const googleApiMessage =
+      typeof error === "object" && error !== null && "response" in error
+        ? (error as {
+            response?: {
+              data?: {
+                error?: {
+                  message?: string;
+                };
+              };
+            };
+          }).response?.data?.error?.message
+        : undefined;
+
     return NextResponse.json(
-      { error: "Failed to create calendar event." },
+      {
+        error: googleApiMessage ?? detailedMessage,
+      },
       { status: 500 },
     );
   }

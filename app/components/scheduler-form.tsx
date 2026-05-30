@@ -79,7 +79,11 @@ export default function SchedulerForm() {
       const data = (await response.json()) as ApiResponse;
 
       if (!response.ok) {
-        throw new Error(data.error || "Unable to create event.");
+        setStatus({
+          type: "error",
+          message: data.error || "Unable to create event.",
+        });
+        return;
       }
 
       setStatus({
