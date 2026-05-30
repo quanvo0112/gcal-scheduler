@@ -61,9 +61,9 @@ export default function Home() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
               <div className="relative h-12 w-12 overflow-hidden rounded-2xl bg-slate-200 ring-4 ring-emerald-100">
-                {session.user?.image ? (
+                {session?.user?.image ? (
                   <img
-                    src={session.user.image}
+                    src={session?.user?.image ?? ""}
                     alt={userName}
                     className="h-full w-full object-cover"
                   />
