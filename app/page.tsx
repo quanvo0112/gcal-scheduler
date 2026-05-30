@@ -52,7 +52,7 @@ export default function Home() {
     );
   }
 
-  const userName = session.user?.name ?? "Signed in user";
+  const userName = session?.user?.name ?? "Signed in user";
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.10),_transparent_32%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)] px-4 py-6 sm:px-6 lg:px-8">
